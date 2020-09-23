@@ -1,0 +1,133 @@
+<div class="container" >
+    <h2>Credit Using Cheque</h2>
+    <form #creditcheque="ngForm" class="form-group" (ngSubmit)="onclickSubmit(creditcheque.value)">
+           
+        <label for="transAccountId"><strong>Account Id</strong></label>
+        <input type="number" class="form-control" id="transAccountId" name="transAccountId" ngModel
+            [(ngModel)]="transaction.transAccountId"
+            placeholder="@Example : 123456789012 " #transAccountId="ngModel" pattern="[0-9]{12}" 
+            [ngClass]="{'is-invalid':transAccountId.touched && transAccountId.invalid}" required>
+        
+        <div *ngIf="transAccountId.invalid && (transAccountId.dirty || transAccountId.touched)">
+                         <div *ngIf="transAccountId.errors.required" style="color: red;">
+                            AccountId is required.
+                         </div>
+                         <div *ngIf="transAccountId.errors.pattern" style="color: red;">
+                            AccountId should be of 12 digits only
+                        </div>
+        </div>
+    
+        <div>
+            <label for="transAmount"><strong>Amount</strong></label>
+            <input type="number" id="transAmount" name="transAmount" min="100" max="200000" ngModel
+            [(ngModel)]="transaction.transAmount" placeholder="@example : 1000.00(Amount should be between 100-200000)" 
+            class="form-control"   #transAmount="ngModel" pattern="[1-9]{1}[0-9]*" 
+            [ngClass]="{'is-invalid':transAmount.touched && transAmount.invalid}" required>
+
+            <div *ngIf="transAmount.invalid && (transAmount.dirty || transAmount.touched)">
+                             <div *ngIf="transAmount.errors.required" style="color: red;">
+                                Amount is required and should be in between 100-200000 only
+                             </div>
+                             <div *ngIf="transAmount.errors.pattern" style="color: red;">
+                                Amount should be in between 100-200000 only
+                            </div>
+            </div>
+              
+    </div>
+
+       
+        <div> 
+            <label for="transDate"><strong>Transaction Date</strong></label>
+            <input type="date" class="form-control" id="transDate" name="transDate"  >
+        </div>
+    
+         
+        
+        <label for="transChequeId"><strong>Transaction Cheque Id</strong></label>
+        <input type="number" class="form-control" id="transChequeId" name="transChequeId" ngModel
+            [(ngModel)]="transaction.transChequeId"
+            placeholder="@Example : 123456 " #transChequeId="ngModel" pattern="[1-9]{1}[0-9]{5}" 
+            [ngClass]="{'is-invalid':transChequeId.touched && transChequeId.invalid}" required>
+        
+        <div *ngIf="transChequeId.invalid && (transChequeId.dirty || transChequeId.touched)">
+                         <div *ngIf="transChequeId.errors.required" style="color: red;">
+                            ChequeId is required.
+                         </div>
+                         <div *ngIf="transChequeId.errors.pattern" style="color: red;">
+                            ChequeId should be of 6 digits only
+                        </div>
+        </div>
+    
+    
+        <label for="chequeId"><strong>Cheque Id</strong></label>
+        <input type="number" class="form-control" id="chequeId" name="chequeId" ngModel
+            [(ngModel)]="transaction.chequeList.chequeId"
+            placeholder="@Example : 123456 " #chequeId="ngModel" pattern="[1-9]{1}[0-9]{5}" 
+            [ngClass]="{'is-invalid':chequeId.touched && chequeId.invalid}" >
+    <div> 
+        <label for="chequeAccountNo"><strong>cheque Account Id</strong></label>
+        <input type="number" class="form-control" id="chequeAccountNo" name="chequeAccountNo" ngModel 
+        [(ngModel)]="transaction.chequeList.chequeAccountNo" 
+        placeholder="@Example : 123456789012 " #chequeAccountNo="ngModel" pattern="[0-9]{12}" 
+        [ngClass]="{'is-invalid':chequeAccountNo.touched && chequeAccountNo.invalid}" required>
+    
+    <div *ngIf="chequeAccountNo.invalid && (chequeAccountNo.dirty || chequeAccountNo.touched)">
+                     <div *ngIf="chequeAccountNo.errors.required" style="color: red;">
+                        chequeAccountId is required.
+                     </div>
+                     <div *ngIf="chequeAccountNo.errors.pattern" style="color: red;">
+                        cheque Account Id should be of 12 digits only
+                    </div>
+    </div>
+    </div>
+    <div> 
+    <label for="chequeHolderName"><strong>Name of Cheque Holder</strong></label>
+        <input type="text" class="form-control" id="chequeHolderName" name="chequeHolderName" ngModel
+            [(ngModel)]="transaction.chequeList.chequeHolderName"
+            placeholder="@Example : Vishal " #chequeHolderName="ngModel" pattern="[A-Z][A-Za-z\s-']+" 
+            [ngClass]="{'is-invalid':chequeHolderName.touched && chequeHolderName.invalid}" >
+         
+        </div>
+    
+       <div> 
+            <label for="chequeBankName"><strong>Bank Name</strong></label>
+            <input type="text" class="form-control" id="chequeBankName" name="chequeBankName"  ngModel
+            [(ngModel)]="transaction.chequeList.chequeBankName"
+            placeholder="@Example : Pecunia " #chequeBankName="ngModel" pattern="[A-Z][A-Za-z\s-']+" >
+        </div>
+    
+        <div> 
+            <label for="chequeIFSC"><strong>Cheque IFSC</strong></label>
+            <input type="text" class="form-control" id="chequeIFSC" name="chequeIFSC"  ngModel
+            [(ngModel)]="transaction.chequeList.chequeIFSC"
+            placeholder="@Example : PECU123456 " #chequeIFSC="ngModel" pattern="[A-Z]{4}[0-9]{6}" required>
+        </div>
+    <div>
+         <label for="chequeIssueDate"><strong>Cheque Issue Date</strong></label>
+        <input type="date" class="form-control" id="chequeIssueDate" name="chequeIssueDate" ngModel
+            [(ngModel)]="transaction.chequeList.chequeIssueDate" #chequeIssueDate="ngModel" placeholder="@Example : dd/mm/yyyy " required>
+    </div>
+    
+    <div>
+        <button type="submit"  class="btn btn-dark" [disabled]="creditcheque.invalid">Credit</button>
+     </div>
+    
+    </form>
+    
+    </div>   
+      
+  
+
+
+<div class="container">
+    <button type="button" (click)="goBack()" class="btn btn-success">Go Back</button>
+</div>  
+
+
+
+
+
+
+
+
+ 

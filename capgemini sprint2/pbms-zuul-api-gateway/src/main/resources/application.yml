@@ -1,0 +1,22 @@
+Spring:
+  application:
+    name: api-gateway
+server:
+  port: 8321
+
+zuul:
+  routes:
+    account-management:
+      path:/accounts/**
+      service-id:account-management
+    transaction-management:
+      path:/transactions/**
+      service-id:transaction-management
+    loan-management:
+      path:/loans/**
+      service-id:loan-management
+    passbook-management:
+      path:/passbook/**
+      service-id:passbook-management      
+    
+          

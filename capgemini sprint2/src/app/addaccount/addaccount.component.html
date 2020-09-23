@@ -1,0 +1,131 @@
+<form class="form-group"  (ngSubmit)="addAccount()" >
+
+     
+            <label for="accountType"><strong>Select Account Type</strong></label>
+            <select id="accountType" class="form-control" name="accountType"  ngModel #accountType required>
+                <option value="Current" >Current</option> 
+                <option value="Savings"selected>Savings</option>
+               
+            </select>
+            <div *ngIf="accountType.invalid && (accountType.dirty || accountType.touched)">
+                <div *ngIf="accountType.errors.required" style="color: red;">
+                    Account Type is required.
+                </div>
+            </div>
+            
+            <label for="accountStatus"><strong>Select Account Status</strong></label>
+            <select id="accountStatus" class="form-control" name="accountStatus"  ngModel #accountStatus required>
+                <option value="Blocked" >Blocked</option> 
+                <option value="Active"selected>Active</option>
+               
+            </select>
+            <div *ngIf="accountStatus.invalid && (accountStatus.dirty || accountStatus.touched)">
+                <div *ngIf="accountStatus.errors.required" style="color: red;">
+                    Account Status is required.
+                </div>
+            </div>
+
+       
+
+
+
+    <label for="accountBalance"><strong>Opening Balance</strong></label>
+    <input type="number" class="form-control" id="accountBalance" name="accountBalance" ngModel
+        [(ngModel)]="customer.accountBalance">
+    <label for="accountIntrest"><strong>accountIntrest</strong></label>
+    <input type="number" class="form-control" id="accountIntrest" name="accountIntrest" ngModel
+        [(ngModel)]="customer.accountIntrest">
+
+    <label for="lastUpdated"><strong>lastUpdated</strong></label>
+    <input type="date" class="form-control" id="lastUpdated" name="lastUpdated" ngModel
+        [(ngModel)]="customer.lastUpdated">
+
+    <label for="customerName"><strong>Name of Account Holder</strong></label>
+    <input type="text" class="form-control" id="customerName" name="customerName" ngModel
+        [(ngModel)]="customer.customerName"
+        placeholder="@Example : Vishal " #customerName="ngModel" pattern="[A-Z][A-Za-z\s-']+" 
+        [ngClass]="{'is-invalid':customerName.touched && customerName.invalid}" required>
+    
+    <div *ngIf="customerName.invalid && (customerName.dirty || customerName.touched)">
+                     <div *ngIf="customerName.errors.required" style="color: red;">
+                        customerName is required.
+                     </div>
+                     <div *ngIf="customerName.errors.pattern" style="color: red;">
+                        customerName should start with Captial Letter
+                    </div>
+    </div>
+
+    <label for="customerAadhar"><strong>Aadhar Number</strong></label>
+             <div>
+         <input ngModel type="number" id="customerAadhar" name="customerAadhar" class="form-control" 
+                 placeholder="@Example : 320049267449" #customerAadhar="ngModel" pattern="[1-9]{1}[0-9]{11}" 
+                 [ngClass]="{'is-invalid':customerAadhar.touched && customerAadhar.invalid}" required>
+             </div>
+
+             <label for="customerPan"><strong>PAN Number</strong></label>
+             <div>
+                 <input ngModel type="any" id="customerPan" name="customerPan" class="form-control" 
+                 placeholder="@Example : BADRF9267L" #customerPan="ngModel" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" 
+                 [ngClass]="{'is-invalid':customerPan.touched && customerPan.invalid}" required>
+             </div>
+            
+             <label for="customerContact"><strong>Mobile Number</strong></label>
+             <div>
+                 <input ngModel type="number" id="customerContact" name="customerContact" class="form-control" 
+                 placeholder="@Example : 8876543210" #customerContact="ngModel" pattern="[6-9]{1}[0-9]{9}" 
+                 [ngClass]="{'is-invalid':customerContact.touched && customerContact.invalid}" required>
+                 <div *ngIf="customerContact.invalid && (customerContact.dirty || customerContact.touched)">
+                    <div *ngIf="customerContact.errors.required" style="color: red;">
+                        Contact is required.
+                    </div>               
+                 </div>
+                </div>
+          
+             <label for="customerGender"><strong>Gender</strong></label>
+             <div>
+                  <input type="radio" id="male" name="gender" value="male">
+                  <label for="male">Male</label>
+                  <input type="radio" id="female" name="gender" value="female">
+                  <label for="female">Female</label>
+                  <input type="radio" id="other" name="gender" value="other">
+                  <label for="other">Other</label>
+             </div>
+         
+     <label for="customerDob"><strong>Date of Birth</strong></label>
+    <input type="date" class="form-control" id="customerDob" name="customerDob" ngModel
+        [(ngModel)]="customer.customerDob">
+
+    <label for="addressId"><strong>customeraddressId</strong></label>
+    <input type="text" class="form-control" id="addressId" name="addressId" ngModel [(ngModel)]="customer.customerAddress.addressId">
+
+    <label for="addressLine1"><strong>Address Line-1</strong></label>
+    <input type="text" class="form-control" id="addressLine1" name="addressLine1" ngModel
+        [(ngModel)]="customer.customerAddress.addressLine1">
+
+    <label for="addressLine2"><strong>Address Line-2</strong></label>
+    <input type="text" class="form-control" id="addressLine2" name="addressLine2" ngModel
+        [(ngModel)]="customer.customerAddress.addressLine2">
+
+    <label for="addressCity"><strong>City</strong></label>
+    <input type="text" class="form-control" id="addressCity" name="addressCity" ngModel
+        [(ngModel)]="customer.customerAddress.addressCity"
+        required>
+
+    <label for="addressState"><strong>State</strong></label>
+    <input type="text" class="form-control" id="addressState" name="addressState" ngModel
+        [(ngModel)]="customer.customerAddress.addressState" required>
+
+    <label for="addressCountry"><strong>Nationality</strong></label>
+    <input type="text" class="form-control" id="addressCountry" name="addressCountry" ngModel
+        [(ngModel)]="customer.customerAddress.addressCountry" required>
+
+    <label for="addressZipcode"><Strong>Postal Code</Strong> </label>
+    <input type="text" class="form-control" id="addressZipcode" name="addressZipcode" ngModel
+        [(ngModel)]="customer.customerAddress.addressZipcode"
+        placeholder="@Example : 502032 " #addressZipcode="ngModel" pattern="[1-9]{1}[1-9]{5}" 
+        [ngClass]="{'is-invalid':addressZipcode.touched && addressZipcode.invalid}" required>
+    
+
+    <button type="submit" class="btn btn-primary">Add Account</button>
+
+</form>

@@ -1,0 +1,22 @@
+<div>
+    <h1>Transaction-Details</h1>
+    <table *ngIf="transaction" class="table" >
+    <tr>
+        <td>TransactionAccount ID</td>
+        <td>Transaction Id</td>
+        <td>Transaction Amount</td>
+        <td>Transaction Option</td>
+        <td>Transaction Date</td>
+    </tr>
+    <tr *ngFor="let transaction of transaction">
+      <td>{{transaction.transAccountId}}</td>
+      <td>{{transaction.transaction_id}}</td>
+      <td>{{transaction.transAmount}}</td>
+      <td>{{transaction.transOption}}</td>
+      <td>{{transaction.transDate}}</td>
+    </tr>
+    </table>
+</div>
+<div class="container">
+  <button type="button" (click)="goBack()" class="btn btn-success">Go Back</button>
+</div> 

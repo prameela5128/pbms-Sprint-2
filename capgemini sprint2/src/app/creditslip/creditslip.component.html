@@ -1,0 +1,192 @@
+<div class="container" >
+    <h2>Credit Using Slip</h2>
+    <form #creditslip="ngForm" class="form-group" (ngSubmit)="onClickSubmit(creditslip.value)">
+           
+       <!-- <div>
+            <label for="transAccountId"><strong>Account Id</strong></label>
+            <input type="number" id=transAccountId name="transAccountId" ngModel
+            [(ngModel)]="transaction.transAccountId" placeholder="345627892323" 
+            class="form-control"  required> 
+     </div> -->
+     
+    <div>
+    <label for="transAccountId"><strong> Account Id</strong></label>
+    <input type="number" class="form-control" id="transAccountId" name="transAccountId" ngModel 
+    [(ngModel)]="transaction.transAccountId" 
+    placeholder="@Example : 123456789012 " #transAccountId="ngModel" pattern="[0-9]{12}" 
+    [ngClass]="{'is-invalid':transAccountId.touched && transAccountId.invalid}" required>
+
+<div *ngIf="transAccountId.invalid && (transAccountId.dirty || transAccountId.touched)">
+                 <div *ngIf="transAccountId.errors.required" style="color: red;">
+                    AccountId is required.
+                 </div>
+                 <div *ngIf="transAccountId.errors.pattern" style="color: red;">
+                    Account Id should be of 12 digits only
+                </div>
+</div>
+    </div>
+    
+    <div>
+            <label for="transAmount"><strong>Amount</strong></label>
+            <input type="number" id="transAmount" name="transAmount"  ngModel
+            [(ngModel)]="transaction.transAmount" placeholder="@example : 1000.00(Amount should be between 100-200000)" 
+            class="form-control"   #transAmount="ngModel" pattern="[1-9]{1}[0-9]*" 
+            [ngClass]="{'is-invalid':transAmount.touched && transAmount.invalid}" required>
+
+            <div *ngIf="transAmount.invalid && (transAmount.dirty || transAmount.touched)">
+                             <div *ngIf="transAmount.errors.required" style="color: red;">
+                                Amount is required.
+                             </div>
+                             <div *ngIf="transAmount.errors.pattern" style="color: red;">
+                                Amount should be in numeric only
+                            </div>
+            </div>
+              
+    </div>
+
+   
+    <div> 
+        <label for="transDate"><strong>Transaction Date</strong></label>
+        <input type="date" class="form-control" id="transDate" name="transDate"  >
+    </div>
+ 
+    <div> 
+        <label for="chequeHolderName"><strong>Name of Account Holder</strong></label>
+            <input type="text" class="form-control" id="chequeHolderName" name="chequeHolderName" ngModel
+                [(ngModel)]="transaction.chequeList.chequeHolderName"
+                placeholder="@Example : Vishal " #chequeHolderName="ngModel" pattern="[A-Z][A-Za-z\s-']+" 
+                [ngClass]="{'is-invalid':chequeHolderName.touched && chequeHolderName.invalid}" >
+             
+            </div>
+        
+    <div> 
+        <label for="chequeBankName"><strong>Bank Name</strong></label>
+        <input type="text" class="form-control" id="chequeBankName" name="chequeBankName"  ngModel
+                placeholder="@Example : Pecunia " #chequeBankName="ngModel" pattern="[A-Z][A-Za-z\s-']+" >
+    </div>
+
+    <div> 
+        <label for="chequeIFSC"><strong>IFSC Code</strong></label>
+        <input type="text" class="form-control" id="chequeIFSC" name="chequeIFSC"  ngModel
+                placeholder="@Example : PECU123456 " #chequeIFSC="ngModel" pattern="[A-Z]{4}[0-9]{6}" >
+    </div>    
+
+     
+
+<div>
+    <button type="submit"  class="btn btn-dark" [disabled]="creditslip.invalid">Credit</button>
+ </div>
+
+</form>
+
+</div>   
+
+<div class="container">
+    <button type="button" (click)="goBack()" class="btn btn-success">Go Back</button>
+</div>  
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+<!-- 
+
+<div class="container">
+    <h2>Credit Using Slip</h2><hr>
+    <form #creditslip="ngForm" class="form-group" (ngSubmit)="onClickSubmit(creditslip.value)">
+           <div>
+                    <label for="transAccountId"><strong>Account Id</strong></label>
+                    <input type="number" id=transAccountId name="transAccountId" ngModel placeholder="345627892323" 
+                    class="form-control" #transAccountId="ngModel" required>
+                    
+             </div>
+
+
+
+
+          <div>
+                    <label for="transAmount"><strong>Amount</strong></label>
+                    <input type="number" id="transAmount" name="transAmount" ngModel placeholder="1000.00" 
+                    class="form-control" #transAmount="ngModel"  required>
+         </div>
+
+
+
+
+         
+         <div>
+                    <button type="submit" class="btn btn-dark" [disabled]="creditslip.invalid">credit</button>
+         </div>
+   </form>
+</div>
+
+
+
+
+
+
+
+<!-- 
+
+
+<div> 
+    <form class="form-group" (ngSubmit)="creditslip()">
+
+    <label for="transAccountId"><strong>Account Id</strong></label>
+    <div>
+        <input ngModel type="number" id="transAccountId" name="transAccountId" class="form-control" 
+        placeholder="@Example : 887654321012" #transAccountId="ngModel" pattern="[0-9]{12}" 
+        [ngClass]="{'is-invalid':transAccountId.touched && transAccountId.invalid}" required>
+        <div *ngIf="transAccountId.invalid && (transAccountId.dirty || transAccountId.touched)">
+           <div *ngIf="transAccountId.errors.required" style="color: red;">
+                Account Id is required.
+           </div>               
+        </div>
+       </div>
+
+       <label for="transAmount"><strong>Amount to be credited</strong></label>
+       <div>
+<input ngModel type="number" class="form-control" id="transAmount" name="transAmount"  
+placeholder="@Example : 10000.00"   #transAmount="ngModel" 
+ [ngClass]="{'is-invalid':transAmount.touched && transAmount.invalid}" required>
+<div *ngIf="transAmount.invalid && (transAmount.dirty || transAmount.touched)">
+    <div *ngIf="transAmount.errors.required" style="color: red;">
+         Amount is required.
+    </div>               
+ </div>
+</div>
+
+<label for="transOption"><strong>Mode of Transaction</strong></label>
+<select id="transOption" class="form-control" name="transOption"  ngModel #transOption required>
+    <option value="Credit" >Credit</option> 
+    <option value="Debit"selected>Debit</option>
+</select>
+<div *ngIf="transOption.invalid && (transOption.dirty || transOption.touched)">
+    <div *ngIf="transOption.errors.required" style="color: red;">
+        Transaction Option is required.
+    </div>
+</div>
+
+<label for="transDate"><strong>Transaction Date</strong></label>
+<input type="date" class="form-control" id="transDate" name="transDate" >
+
+
+
+
+       
+     
+<button type="submit"   class="btn btn-primary">Credit</button>
+ 
+
+</form>
+</div> --> -->

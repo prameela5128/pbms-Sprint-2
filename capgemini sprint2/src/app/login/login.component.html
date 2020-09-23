@@ -1,0 +1,28 @@
+
+<div class="container">
+    <h2>Login Form</h2><hr>
+    <form #loginForm="ngForm" class="form-group" (ngSubmit)="onClickSubmit(loginForm.value)">
+           <div>
+                    <label for="employeeName"><strong>Employee Name</strong></label>
+                    <input type="text" id=employeeName name="employeeName" ngModel placeholder="employeeName" 
+                     class="form-control" #employeeName="ngModel" 
+                     [ngClass]="{'is-invalid':employeeName.touched && employeeName.invalid}" required>
+          </div>
+          <div>
+                    <label for="employeePassword"><strong>Password</strong></label>
+                    <input type="password" id="employeePassword" name="employeePassword" ngModel placeholder="employeePassword" 
+                    class="form-control" #employeePassword="ngModel" 
+                    [ngClass]="{'is-invalid': employeePassword.touched && employeePassword.invalid}" required>
+         </div>
+         <div>
+                    <button type="submit" class="btn btn-dark" [disabled]="loginForm.invalid">Login</button>
+         </div>
+   </form>
+</div>
+
+
+
+
+
+
+
